@@ -2,7 +2,7 @@
 
 from flask import Flask, make_response, jsonify, session
 from flask_migrate import Migrate
-
+from flask_cors import  CORS
 from models import db, Article, User
 
 app = Flask(__name__)
@@ -13,7 +13,8 @@ app.json.compact = False
 
 migrate = Migrate(app, db)
 
-db.init_app(app)
+db.init_app(app) 
+CORS(app)
 
 @app.route('/clear')
 def clear_session():
